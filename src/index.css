@@ -1,0 +1,20 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  background-color: var(--darkgreen);
+  --orange : #F37634;
+  --lightgreen : #b3d341;
+  --darkgreen : #021800;
+  --heading-font: 'Poppins', sans-serif;
+--body-font: 'Nunito', sans-serif;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+
