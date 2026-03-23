@@ -233,7 +233,7 @@ body {
 .summary-card h3,
 .form-card h3 {
     font-family: var(--heading);
-    color: black;
+   color: #1f3520;
     margin: 0 0 12px;
     font-size: 22px;
 }
