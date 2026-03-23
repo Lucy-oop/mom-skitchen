@@ -6,7 +6,6 @@ import { getCart, updateQty, removeItem, clearCart, calculateTotal } from "./uti
 function Cart() {
   const [cart, setCart] = useState(() => getCart());
 
-
   const totals = calculateTotal(cart, 1500);
 
   const inc = (id) => setCart(updateQty(id, (cart.find(i => i.id === id)?.qty || 1) + 1));

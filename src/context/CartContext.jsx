@@ -12,9 +12,7 @@ export function CartProvider({ children }) {
 
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, qty: item.qty + 1 }
-            : item
+          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
         );
       }
 
@@ -22,7 +20,7 @@ export function CartProvider({ children }) {
     });
   };
 
-  // INCREASE
+  // INCREASE QUANTITY
   const increaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -31,25 +29,35 @@ export function CartProvider({ children }) {
     );
   };
 
-  // DECREASE
+  // DECREASE QUANTITY (Safely drops items when qty hits 0)
   const decreaseQty = (id) => {
     setCartItems((prev) =>
       prev
-        .map((item) =>
-          item.id === id ? { ...item, qty: item.qty - 1 } : item
-        )
+        .map((item) => (item.id === id ? { ...item, qty: item.qty - 1 } : item))
         .filter((item) => item.qty > 0)
     );
   };
 
-  // REMOVE
+  // REMOVE ITEM COMPLETELY
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // CLEAR THE WHOLE CART (Handy for checkout!)
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, increaseQty, decreaseQty, removeItem }}
+      value={{
+        cartItems,
+        addToCart,
+        increaseQty,
+        decreaseQty,
+        removeItem,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>
@@ -57,6 +65,9 @@ export function CartProvider({ children }) {
 }
 
 export function useCart() {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
 }
-

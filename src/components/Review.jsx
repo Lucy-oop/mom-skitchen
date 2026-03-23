@@ -1,7 +1,6 @@
 import "./Review.css";
 import Nav from "./Nav";
 
-// ✅ put your 4 review images here
 import R1 from "../images/reviews/review1.png";
 import R2 from "../images/reviews/review2.png";
 import R3 from "../images/reviews/review3.png";
